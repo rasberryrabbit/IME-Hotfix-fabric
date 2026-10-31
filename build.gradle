@@ -1,0 +1,43 @@
+plugins {
+    id 'net.fabricmc.fabric-loom' version '1.19.3'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+dependencies {
+    minecraft   "com.mojang:minecraft:${project.minecraft_version}"
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+    // JNA — compile-time only. MC 26.2 ships JNA 5.17.0 as a launcher library,
+    // so Fabric Loader has it on the runtime classpath automatically.
+    compileOnly "net.java.dev.jna:jna:${project.jna_version}"
+    compileOnly "net.java.dev.jna:jna-platform:${project.jna_version}"
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
+    withSourcesJar()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 25
+    it.options.encoding = 'UTF-8'
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+loom {
+    clientOnlyMinecraftJar()
+}

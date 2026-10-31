@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "imehotfix",
+  "version": "${version}",
+  "name": "IME-HotFix-Fabric",
+  "description": "Proper IME (Input Method Editor) support for Minecraft on Fabric. Shows the composition in-line inside the text field, lets searches filter on it before it is confirmed, and adds auto-wrap for signs and auto-paging for books.",
+  "authors": [
+    "imehotfix"
+  ],
+  "contact": {
+    "homepage": "https://github.com/imehotfix/IME-HotFix-Fabric",
+    "sources": "https://github.com/imehotfix/IME-HotFix-Fabric"
+  },
+  "license": "LGPL-3.0-or-later",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "jp.antimeme.mc.imehotfix.fabric.IMEHotfixMod"
+    ]
+  },
+  "mixins": [
+    "imehotfix.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": ">=26.2",
+    "java": ">=25"
+  }
+}

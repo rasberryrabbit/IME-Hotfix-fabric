@@ -1,25 +1,22 @@
-# eclipse
-bin
-*.launch
-.settings
-.metadata
-.classpath
-.project
+# Gradle
+.gradle/
+build/
+out/
+target/
+classes/
 
-# idea
-out
+# IDE
+.idea/
+*.iml
 *.ipr
 *.iws
-*.iml
-.idea
+.vscode/
+.settings/
+.project
+.classpath
+*.swp
+.DS_Store
 
-# gradle
-build
-.gradle
-
-# run directories of every port
-run
-run-data
-
-# Files from Forge MDK
-forge*changelog.txt
+# Fabric Loom
+run/
+runs/
