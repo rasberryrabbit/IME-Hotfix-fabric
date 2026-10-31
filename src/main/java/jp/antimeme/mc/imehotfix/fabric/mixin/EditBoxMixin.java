@@ -140,7 +140,7 @@ public abstract class EditBoxMixin implements ImeTextTarget {
     }
 
     @Inject(method = "extractWidgetRenderState", at = @At("HEAD"))
-    private void imehotfix$spliceComposition(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick, CallbackInfo callback) {
+    private void imehotfix$spliceComposition(GuiGraphicsExtractor graphics, CallbackInfo callback) {
         if (this.imehotfix$swapped) {
             this.imehotfix$restore();
         }
@@ -167,7 +167,7 @@ public abstract class EditBoxMixin implements ImeTextTarget {
     }
 
     @Inject(method = "extractWidgetRenderState", at = @At("RETURN"))
-    private void imehotfix$drawComposition(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick, CallbackInfo callback) {
+    private void imehotfix$drawComposition(GuiGraphicsExtractor graphics, CallbackInfo callback) {
         try {
             if (this.imehotfix$swapped) {
                 this.imehotfix$drawCompositionMarkers(graphics);

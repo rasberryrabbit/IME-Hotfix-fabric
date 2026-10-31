@@ -28,7 +28,6 @@ import net.minecraft.client.gui.components.MultiLineEditBox;
 import net.minecraft.client.gui.components.MultilineTextField;
 import net.minecraft.client.input.PreeditEvent;
 import net.minecraft.network.chat.Style;
-import net.minecraft.util.Mth;
 
 @Mixin(MultiLineEditBox.class)
 public abstract class MultiLineEditBoxMixin implements ImeTextTarget, ImeOverflowAware {
@@ -117,7 +116,7 @@ public abstract class MultiLineEditBoxMixin implements ImeTextTarget, ImeOverflo
     }
 
     @Inject(method = "extractContents", at = @At("HEAD"))
-    private void imehotfix$spliceComposition(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick, CallbackInfo callback) {
+    private void imehotfix$spliceComposition(GuiGraphicsExtractor graphics, CallbackInfo callback) {
         if (this.imehotfix$swapped) {
             this.imehotfix$restore();
         }
@@ -133,8 +132,8 @@ public abstract class MultiLineEditBoxMixin implements ImeTextTarget, ImeOverflo
         if (current == null) {
             return;
         }
-        int cursor = Mth.clamp(field.imehotfix$getCursor(), 0, current.length());
-        int select = Mth.clamp(field.imehotfix$getSelectCursor(), 0, current.length());
+        int cursor = Math.clamp(field.imehotfix$getCursor(), 0, current.length());
+        int select = Math.clamp(field.imehotfix$getSelectCursor(), 0, current.length());
         int start = Math.min(cursor, select);
         int end = Math.max(cursor, select);
         this.imehotfix$savedValue = current;
@@ -153,7 +152,7 @@ public abstract class MultiLineEditBoxMixin implements ImeTextTarget, ImeOverflo
     }
 
     @Inject(method = "extractContents", at = @At("RETURN"))
-    private void imehotfix$restoreAfterRender(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick, CallbackInfo callback) {
+    private void imehotfix$restoreAfterRender(GuiGraphicsExtractor graphics, CallbackInfo callback) {
         try {
             if (this.imehotfix$swapped) {
                 this.imehotfix$drawCompositionMarkers(graphics);

@@ -7,12 +7,10 @@
     "defaultRequire": 1
   },
   "client": [
-    "AbstractSignEditScreenMixin",
     "BookEditScreenMixin",
     "CreativeModeInventoryScreenMixin",
     "EditBoxMixin",
     "MultiLineEditBoxMixin",
-    "MultilineTextFieldAccessor",
-    "TextFieldHelperAccessor"
+    "MultilineTextFieldAccessor"
   ]
 }
